@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed');
-    alert('Hello from script.js!');
+
 });
+
+
+function getComputerChoice() {
+    let randomNumber = Math.random(); //get random float between 0 and 1
+    let computerChoice = undefined;
+
+    if (randomNumber <= 0.33) {
+        computerChoice = "Rock";
+    }
+    else if (randomNumber >= 0.66) {
+        computerChoice = "Paper";
+    }
+
+    else {
+        computerChoice = "Scissor";
+    }
+
+    console.log(randomNumber);
+    console.log(computerChoice);
+}
+
+
+getComputerChoice();
