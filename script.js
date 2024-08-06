@@ -10,8 +10,7 @@ var playerCount = 0;
 var computerCount = 0;
 let keepPlaying = true;
 
-let playerChoice = undefined
-let computerChoice = undefined;
+
 
 function getComputerChoice() {
     let randomNumber = Math.random(); //get random float between 0 and 1
@@ -49,43 +48,51 @@ function getPlayerChoice() {
     }
 }
 
-while (keepPlaying == true) { //repeating loop
-
-
-//capture choices and assign them to variable
-playerChoice = getPlayerChoice();
-computerChoice = getComputerChoice();
-
 //game logic
+function playRound(playerChoice, computerChoice) {
 
-if (playerChoice === "rock" && computerChoice === "scissors") {
-    alert("Computer picked: " + computerChoice + ". Congratulations, you win!");
-    playerCount++;
-}
-else if (playerChoice === "paper" && computerChoice === "rock") {
-    alert("Computer picked: " + computerChoice + ". Congratulations, you win!");
-    playerCount++;
-}
-else if (playerChoice === "scissors" && computerChoice === "paper") {
-    alert("Computer picked: " + computerChoice + ". Congratulations, you win!");
-    playerCount++;
-}
-else if (playerChoice === computerChoice) {
-    alert("Its a tie!");
-}
-else {
-    alert("Computer picked: " + computerChoice + ". You lose!")
-    computerCount++;
-}
-
-//display scores
-console.log("Player Count: " + playerCount);
-console.log("Computer count: " + computerCount);
-
-let again = prompt("Play again? Yes / No ");
-    again = again.toLowerCase();
-    if (again != "yes") {
-        keepPlaying = false;
+    if (playerChoice === "rock" && computerChoice === "scissors") {
+        alert("Computer picked: " + computerChoice + ". Congratulations, you win!");
+        playerCount++;
     }
-    
+    else if (playerChoice === "paper" && computerChoice === "rock") {
+        alert("Computer picked: " + computerChoice + ". Congratulations, you win!");
+        playerCount++;
+    }
+    else if (playerChoice === "scissors" && computerChoice === "paper") {
+        alert("Computer picked: " + computerChoice + ". Congratulations, you win!");
+        playerCount++;
+    }
+    else if (playerChoice === computerChoice) {
+        alert("Its a tie!");
+    }
+    else {
+        alert("Computer picked: " + computerChoice + ". You lose!")
+        computerCount++;
+    }
+    return computerCount;
+    return playerCount;
 }
+
+
+//initiate game
+while (keepPlaying) { //game repeating loop
+
+    //call functions 
+    const playerChoice = getPlayerChoice();
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice, computerChoice);
+
+
+    //display scores
+    console.log("Player Count: " + playerCount);
+    console.log("Computer count: " + computerCount);
+
+
+    let again = prompt("Play again? Yes / No ").toLowerCase();
+        if (again === "no") {
+            keepPlaying = false;
+            alert(`Final score\nPlayer: ${playerCount}\nComputer: ${computerCount}`)
+        }
+        
+ }
